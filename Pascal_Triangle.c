@@ -8,7 +8,7 @@ void main (int argc, char* argv[]){
   j=0;
   m=0;
   n=0;
-
+  printf("[");
   while (i+j < size * 2 ) {
     if ( i==0 || j==0){
       tree[i][j] = 1;
@@ -16,12 +16,17 @@ void main (int argc, char* argv[]){
       tree[i][j]=tree[i-1][j] + tree[i][j-1];
     }
     if (j < size -i) {
-      printf(" ");
+      /*printf(" ");*/
     } else {
       if (i == 0 && j == 0){
-        printf("%d", tree[i][j]);
+        /*printf("%d", tree[i][j]);*/
       } else {
-        printf("%d ", tree[m++][n--]);
+        if ( m+n == size-1){
+          printf("%d", tree[m++][n--]);
+          if (n != -1){
+            printf(",");
+          }
+        }
       }
     }
     j++;
@@ -29,11 +34,12 @@ void main (int argc, char* argv[]){
       if (i+j == size * 2){
         break;
       }
-      printf("\n");
+      /*printf("\n");*/
       j = 0;
       i++;
       n = i - 1;
       m = 0;
     }
   }
+  printf("]");
 }
